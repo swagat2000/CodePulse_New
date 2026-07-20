@@ -1,0 +1,34 @@
+<div class="container">
+    <h1 class="mt-3">Add Category</h1>
+
+    <form [formGroup]="addCategoryForm" (ngSubmit)="onSubmit()">
+
+        <div class="mt-3">
+            <div class="mt-3">
+                <label class="form-label">Name</label>
+                <input type="text" class="form-control" formControlName="name">
+                @if (nameFormControl.touched && nameFormControl.hasError('required')) {
+                   <p class="test-danger small">This is a required field</p>
+                }
+                @if (nameFormControl.touched && nameFormControl.hasError('maxLength')) {
+                   <p class="test-danger small">Name must be less than 100 characters</p>
+                }
+            </div>
+
+            <div class="mt-3">
+                <label class="form-label">Url Handle (Slug)</label>
+                <input type="text" class="form-control" formControlName="urlHandle">
+                @if (urlHandleFormControl.touched && urlHandleFormControl.hasError('required')) {
+                   <p class="test-danger small">This is a required field</p>
+                }
+                @if (urlHandleFormControl.touched && urlHandleFormControl.hasError('maxLength')) {
+                   <p class="test-danger small">Url Handle must be less than 200 characters</p>
+                }
+            </div>
+
+            <div class="mt-3">
+                <button type="submit" class="btn btn-primary" [disabled]="addCategoryForm.valid===false">Save</button>
+            </div>
+        </div>
+    </form>
+</div>
