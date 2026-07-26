@@ -62,6 +62,30 @@ namespace CodePulse.API.Controllers
 
             return Ok(response);
         }
+
+
+
+        // GET: api/Categories/{id} Get method to retrieve a category by its ID
+        [HttpGet]
+        [Route("{id:guid}")]
+        public async Task<IActionResult> GetCategoryById([FromRoute] Guid id)
+        {
+            var category = await _categoryRepository.GetByIdAsync(id);
+
+            if (category == null)
+            {
+                return NotFound();
+            }
+
+            var response = new CategoryDto
+            {
+                Id = category.Id,
+                Name = category.Name,
+                UrlHandle = category.UrlHandle
+            };
+
+            return Ok(response);
+        }
     }
 }
 
