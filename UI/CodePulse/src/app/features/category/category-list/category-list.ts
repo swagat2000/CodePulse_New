@@ -20,7 +20,4 @@ export class CategoryList {
 
   value = this.getAllCategoriesrRef.value;
   
-  
-
-  
 }

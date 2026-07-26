@@ -1,5 +1,5 @@
 import { HttpClient, httpResource } from '@angular/common/http';
-import { inject, Injectable, signal } from '@angular/core';
+import { inject, Injectable, InputSignal, signal } from '@angular/core';
 import { AddCategoryRequest, Category } from '../Models/category.model';
 import { environment } from '../../../../environments/environment';
 
@@ -36,6 +36,12 @@ export class CategoryService {
 
     
   
+  }
+
+  getCategoryById(id:InputSignal<string| undefined> )
+  {
+    return httpResource<Category>(() => `${this.apiBaseUrl}/api/Categories/${id()}`)
+
   }
 
 }
